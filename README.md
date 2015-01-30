@@ -9,6 +9,8 @@ Download and install [Vagrant](https://www.vagrantup.com/downloads.html)
 
 Make sure you are at least at Vagrant version 1.5 or the steps below may not work for you.
 
+Clone this repo and change to this new directory.
+
 Then from a terminal, do:
 
 ```
