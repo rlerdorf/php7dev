@@ -20,7 +20,7 @@ $ vagrant ssh
 Add this to your hosts file:
 
 ```
-192.7.7.7 php7dev
+192.168.7.7 php7dev
 ```
 
 There are also various vagrant plugins that can help you update your dns. See [local-domain-resolution](https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins#local-domain-resolution).  

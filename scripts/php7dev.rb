@@ -5,7 +5,7 @@ class Php7dev
     config.vm.hostname = "php7dev"
 
     # Configure A Private Network IP
-    config.vm.network :private_network, ip: settings["ip"] ||= "192.7.7.7"
+    config.vm.network :private_network, ip: settings["ip"] ||= "192.168.7.7"
 
     # Configure A Few VirtualBox Settings
     config.vm.provider "virtualbox" do |vb|
