@@ -12,23 +12,15 @@ Make sure you are at least at Vagrant version 1.5 or the steps below may not wor
 Then from a terminal, do:
 
 ```
-$ vagrant box add rasmus/php7dev
-...
-$ vagrant init rasmus/php7dev
-...
 $ vagrant up
 ...
 $ vagrant ssh
 ```
 
-If everything went well you should now be ssh'ed into your php7dev environment.
-
-However, if you check **/sbin/ifconfig** you will see that your network interface is a private NAT'ed ip. You can get out from it, but you can't get in. Log back out and edit your *~/Vagrantfile*.
-Most of it is commented out. Add these two lines right under the line that says, *config.vm.box = "rasmus/php7dev"*:
+Add this to your hosts file:
 
 ```
-config.vm.hostname = "php7dev"
-config.vm.network "public_network", type: "dhcp"
+192.7.7.7 php7dev
 ```
 
 There are also various vagrant plugins that can help you update your dns. See [local-domain-resolution](https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins#local-domain-resolution).  
@@ -38,8 +30,6 @@ The [landrush](https://github.com/phinze/landrush) one looks interesting since i
 ```
 $ vagrant reload
 ```
-
-It will ask you which interface to bridge to. Select your current active network interface and it should just work. If you have configured one of the domain resolution plugins you should be set to go now, otherwise, **vagrant ssh** in and check the ip manually (**ip addr show**) and add it to your */etc/hosts* file on the machine you are running your browser on. Then try it: 
 
 ```
 http://php7dev/
