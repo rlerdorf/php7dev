@@ -49,6 +49,36 @@ It should show the PHP7 phpinfo() page.
 
 This also means you don't need to use **vagrant ssh** anymore. You can just ssh directly into the machine like any other machine on your network at this point.
 
+## Updating your php7dev image
+
+```
+$ vagrant box outdated
+Checking if box 'rasmus/php7dev' is up to date...
+A newer version of the box 'rasmus/php7dev' is available! You currently
+have version '0.0.3'. The latest is version '0.0.4'. Run
+`vagrant box update` to update.
+
+$ vagrant box update
+...
+
+$ vagrant box list
+rasmus/php7dev (virtualbox, 0.0.3)
+rasmus/php7dev (virtualbox, 0.0.4)
+```
+
+At this point you have two versions of the box. It won't automatically destroy your current one since you could have added some important data to it.
+To use this new version, make sure anything you need from your current one is saved elsewhere and do:
+
+```
+$ vagrant destroy
+    default: Are you sure you want to destroy the 'default' VM? [y/N] y
+==> default: Forcing shutdown of VM...
+==> default: Destroying VM and associated drives...
+
+$ vagrant up
+...
+```
+
 ## Installing phpBB
 
 Now you can install something. The sites live in */var/www*.
