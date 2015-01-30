@@ -149,7 +149,7 @@ Usually does the trick. You will also find [composer](https://getcomposer.org/) 
 New in version 0.0.3 of the image is the ability to switch the entire PHP environment quickly. Every version of PHP since 5.3 is precompiled and installed in /usr/local/php*. There are actually 4 builds for each version. debug, zts, debug-zts and the standard non-debug, non-zts. To switch versions do:
 
 ```
-$ newphp 55 debug zts
+$ sudo newphp 55 debug zts
 Activating PHP 5.5.22-dev and restarting php-fpm
 ```
 If you reload ** http://php7dev/ ** you will see the PHP 5.5 info page, but much more importanly, if you run **phpize** in an extension directory it will now build the extension for PHP 5.5-debug-zts and install it in the correct place. You can quickly switch between versions like this and build your extension for 20 different combinations of PHP versions (this was requested by @auroraeosrose so if it is useful to you, she is partly to blame).
