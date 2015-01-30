@@ -8,6 +8,9 @@ authorize: ~/.ssh/id_rsa.pub
 keys:
     - ~/.ssh/id_rsa
 
+networking:
+    - public: true
+
 folders:
     - map: scripts
       to: /home/vagrant/scripts
