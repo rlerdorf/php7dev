@@ -1,0 +1,20 @@
+---
+ip: "192.7.7.7"
+memory: 1024
+cpus: 2
+
+authorize: ~/.ssh/id_rsa.pub
+
+keys:
+    - ~/.ssh/id_rsa
+
+folders:
+    - map: scripts
+      to: /home/vagrant/scripts
+
+sites:
+    - map: php7dev.dev
+      to: /home/vagrant/scripts
+
+databases:
+    - example_database
