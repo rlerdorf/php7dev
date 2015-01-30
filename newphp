@@ -1,0 +1,79 @@
+#!/usr/local/php70/bin/php
+<?php
+
+$map = [
+ 'bin/phar'=>'bin/phar.phar',
+ 'bin/phar.phar'=>'bin/phar.phar',
+ 'bin/php'=>'bin/php',
+ 'bin/php-cgi'=>'bin/php-cgi',
+ 'bin/php-config'=>'bin/php-config',
+ 'bin/phpize'=>'bin/phpize',
+ 'include/php'=>'include/php',
+ 'lib/php/build'=>'lib/php/build',
+ 'php'=>'php',
+ 'sbin/php-fpm'=>'sbin/php-fpm'
+];
+
+if($argc<2) usage();
+
+$debug = $zts = false;
+if($argc>2) {
+    if($argv[2] == 'debug') { $debug = true; $zts = false; }
+    else if($argv[2] == 'zts') { $debug = false; $zts = true; }
+    else if($argv[2] == 'debugzts') { $debug = true; $zts = true; }
+}
+
+switch($argv[1]) {
+    case 7:
+    case 70:
+        switch_php('php70', $debug, $zts);
+        break;
+    case 5:
+    case 56:
+        switch_php('php56', $debug, $zts);
+        break;
+    case 55:
+        switch_php('php55', $debug, $zts);
+        break;
+    case 54:
+        switch_php('php54', $debug, $zts);
+        break;
+    case 53:
+        switch_php('php53', $debug, $zts);
+        break;
+}
+
+function usage() {
+    global $argv;
+    $cmd = basename($argv[0]);
+    echo "Usage: $cmd 70|56|55|54|53|52|51 [debug/zts/debug-zts]\n";
+    echo "To switch to PHP 5.5-debug: tryphp 55 debug\n\n";
+    exit;
+}
+
+function switch_php($version, $debug=false, $zts = false) {
+    global $map;
+
+    $path = "/usr/local/$version";
+    if($debug) $path .= '-debug';
+    if($zts) $path .= '-zts';
+    if(!is_file("$path/bin/php")) {
+        echo "/usr/local/$version/bin/php doesn't exist\n";
+        return false;
+    }
+    $real_version = shell_exec("/usr/local/$version/bin/php -r 'echo phpversion();'");
+    echo "Activating PHP $real_version and restarting php-fpm\n";
+
+    foreach($map as $link=>$target) {
+        // echo "Creating /usr/local/$link => $path/$target\n";
+        symlink_it("$path/$target", "/usr/local/$link");
+    }
+
+    shell_exec("service php-fpm restart");
+}
+
+function symlink_it($target, $link) {
+    // Skip files that have been hard-linked in place
+    if(file_exists($link) && !is_link($link)) return false;
+    shell_exec("ln -f -s $target $link");
+}
