@@ -24,7 +24,7 @@ $ vagrant ssh
 If everything went well you should now be ssh'ed into your php7dev environment.
 
 However, if you check **/sbin/ifconfig** you will see that your network interface is a private NAT'ed ip. You can get out from it, but you can't get in. Log back out and edit your *~/Vagrantfile*.
-Most of it is commented out. Add these two lines:
+Most of it is commented out. Add these two lines right under the line that says, *config.vm.box = "rasmus/php7dev"*:
 
 ```
 config.vm.hostname = "php7dev"
