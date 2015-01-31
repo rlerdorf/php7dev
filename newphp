@@ -61,7 +61,7 @@ function switch_php($version, $debug=false, $zts = false) {
         echo "/usr/local/$version/bin/php doesn't exist\n";
         return false;
     }
-    $real_version = shell_exec("/usr/local/$version/bin/php -r 'echo phpversion();'");
+    $real_version = trim(shell_exec("/usr/local/$version/bin/php -v | head -1"));
     echo "Activating PHP $real_version and restarting php-fpm\n";
 
     foreach($map as $link=>$target) {
