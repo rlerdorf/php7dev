@@ -49,15 +49,9 @@ class Php7dev
     end
 
     # Register All Of The Configured Shared Folders
-    settings["folders"].each do |folder|
-      config.vm.synced_folder folder["map"], folder["to"], type: folder["type"] ||= nil
-    end
-
-    # Install All The Configured Nginx Sites
-    settings["sites"].each do |site|
-      config.vm.provision "shell" do |s|
-          s.inline = "bash /vagrant/scripts/serve.sh $1 \"$2\""
-          s.args = [site["map"], site["to"]]
+    if settings['folders'].kind_of?(Array)
+      settings["folders"].each do |folder|
+        config.vm.synced_folder folder["map"], folder["to"], type: folder["type"] ||= nil
       end
     end
 

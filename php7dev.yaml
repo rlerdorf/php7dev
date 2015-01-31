@@ -12,12 +12,8 @@ networking:
     - public: true
 
 folders:
-    - map: scripts
-      to: /home/vagrant/scripts
-
-sites:
-    - map: php7dev.dev
-      to: /home/vagrant/scripts
+#    - map: example-folder
+#      to: /path/in/vagrant/example-folder
 
 databases:
     - example_database
