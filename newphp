@@ -1,5 +1,6 @@
 #!/usr/local/php70/bin/php
 <?php
+$prefix = "/usr/local";
 
 $map = [
  'bin/phar'=>'bin/phar.phar',
@@ -23,25 +24,11 @@ if($argc>2) {
     else if($argv[2] == 'debugzts') { $debug = true; $zts = true; }
 }
 
-switch($argv[1]) {
-    case 7:
-    case 70:
-        switch_php('php70', $debug, $zts);
-        break;
-    case 5:
-    case 56:
-        switch_php('php56', $debug, $zts);
-        break;
-    case 55:
-        switch_php('php55', $debug, $zts);
-        break;
-    case 54:
-        switch_php('php54', $debug, $zts);
-        break;
-    case 53:
-        switch_php('php53', $debug, $zts);
-        break;
-}
+$version = $argv[1];
+if($version=='7') switch_php('php70', $debug, $zts);
+else if($version=='5') switch_php('php56', $debug, $zts);
+else if(file_exists("$prefix/$version/bin/php")) switch_php($version, $debug, $zts);
+else switch_php('php'.$version, $debug, $zts);
 
 function usage() {
     global $argv;
@@ -52,21 +39,21 @@ function usage() {
 }
 
 function switch_php($version, $debug=false, $zts = false) {
-    global $map;
+    global $map, $prefix;
 
-    $path = "/usr/local/$version";
+    $path = "$prefix/$version";
     if($debug) $path .= '-debug';
     if($zts) $path .= '-zts';
     if(!is_file("$path/bin/php")) {
-        echo "/usr/local/$version/bin/php doesn't exist\n";
+        echo "$prefix/$version/bin/php doesn't exist\n";
         return false;
     }
-    $real_version = trim(shell_exec("/usr/local/$version/bin/php -v | head -1"));
+    $real_version = trim(shell_exec("$prefix/$version/bin/php -v | head -1"));
     echo "Activating PHP $real_version and restarting php-fpm\n";
 
     foreach($map as $link=>$target) {
-        // echo "Creating /usr/local/$link => $path/$target\n";
-        symlink_it("$path/$target", "/usr/local/$link");
+        // echo "Creating $prefix/$link => $path/$target\n";
+        symlink_it("$path/$target", "$prefix/$link");
     }
 
     shell_exec("service php-fpm restart");
