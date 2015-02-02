@@ -1,0 +1,19 @@
+---
+ip: "192.168.7.7"
+memory: 1024
+cpus: 2
+
+authorize: ~/.ssh/id_rsa.pub
+
+keys:
+    - ~/.ssh/id_rsa
+
+networking:
+    - public: true
+
+folders:
+#    - map: example-folder
+#      to: /path/in/vagrant/example-folder
+
+databases:
+    - example_database

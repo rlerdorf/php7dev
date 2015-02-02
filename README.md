@@ -9,26 +9,20 @@ Download and install [Vagrant](https://www.vagrantup.com/downloads.html)
 
 Make sure you are at least at Vagrant version 1.5 or the steps below may not work for you.
 
+Clone this repo and change to this new directory.
+
 Then from a terminal, do:
 
 ```
-$ vagrant box add rasmus/php7dev
-...
-$ vagrant init rasmus/php7dev
-...
 $ vagrant up
 ...
 $ vagrant ssh
 ```
 
-If everything went well you should now be ssh'ed into your php7dev environment.
-
-However, if you check **/sbin/ifconfig** you will see that your network interface is a private NAT'ed ip. You can get out from it, but you can't get in. Log back out and edit your *~/Vagrantfile*.
-Most of it is commented out. Add these two lines right under the line that says, *config.vm.box = "rasmus/php7dev"*:
+Add this to your hosts file:
 
 ```
-config.vm.hostname = "php7dev"
-config.vm.network "public_network", type: "dhcp"
+192.168.7.7 php7dev
 ```
 
 There are also various vagrant plugins that can help you update your dns. See [local-domain-resolution](https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins#local-domain-resolution).  
@@ -38,8 +32,6 @@ The [landrush](https://github.com/phinze/landrush) one looks interesting since i
 ```
 $ vagrant reload
 ```
-
-It will ask you which interface to bridge to. Select your current active network interface and it should just work. If you have configured one of the domain resolution plugins you should be set to go now, otherwise, **vagrant ssh** in and check the ip manually (**ip addr show**) and add it to your */etc/hosts* file on the machine you are running your browser on. Then try it: 
 
 ```
 http://php7dev/
@@ -146,6 +138,18 @@ Now go through the steps. Your Database host is **localhost** and the user is **
 ```
 $ sudo rm -rf /var/www/phpBB3/install/
 ```
+
+## Adding Shared Folders
+
+Add shared folders by adding them to the folders section in the php7dev.yaml configuration file.
+
+## Toggle Public Network
+
+By default the vagrant machine will use DHCP to be accessible over the local network. This can be disabled in the php7dev.yaml configuration file. 
+
+## Add MySQL databases
+
+Add the name of the database you want to be created in the databases section of the php7dev.yaml configuration file.
 
 ## Installing other apps
 
