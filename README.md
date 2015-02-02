@@ -109,6 +109,18 @@ Now go through the steps. Your Database host is **localhost** and the user is **
 $ sudo rm -rf /var/www/phpBB3/install/
 ```
 
+## Adding Shared Folders
+
+Add shared folders by adding them to the folders section in the php7dev.yaml configuration file.
+
+## Toggle Public Network
+
+By default the vagrant machine will use DHCP to be accessible over the local network. This can be disabled in the php7dev.yaml configuration file. 
+
+## Add MySQL databases
+
+Add the name of the database you want to be created in the databases section of the php7dev.yaml configuration file.
+
 ## Installing other apps
 
 For the most part installing almost anything follows the same pattern. Download the tarball or zip file to */var/www*. Extract, make it owned by **www-data** and find the nginx server config. Usually a quick Google search will turn it up. If it doesn't, something like:
