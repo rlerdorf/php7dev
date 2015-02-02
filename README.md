@@ -9,7 +9,9 @@ Download and install [Vagrant](https://www.vagrantup.com/downloads.html)
 
 Make sure you are at least at Vagrant version 1.5 or the steps below may not work for you.
 
-Just clone and go. Like this:
+If you are on Windows use the [Manual Install](#Manual-Install) instructions.
+
+Otherwise for UNIX and UNIX-like users just clone and go. Like this: 
 
 ```
 $ git clone https://github.com/rlerdorf/php7dev.git
@@ -39,6 +41,34 @@ and it should show the PHP7 phpinfo() page.
 
 The box will also fetch an ip via DHCP so it will be on your local network like any other machine.
 This also means you don't need to use **vagrant ssh** anymore. 
+
+## Manual Install
+
+You don't really need the helpers in the Github repo. I doubt they work well on Windows. You can get up and running using just Vagrant.
+
+```
+$ vagrant box add rasmus/php7dev
+...
+$ vagrant init rasmus/php7dev
+...
+$ vagrant up
+...
+$ vagrant ssh
+```
+
+For DHCP add:
+
+```
+config.vm.network "public_network", type: "dhcp"
+```
+
+To your Vagrantfile. For a static IP, add:
+
+```
+config.vm.network "private_network", ip: "192.168.7.7"
+```
+
+Full docs on this is at [https://docs.vagrantup.com/v2/networking/private_network.html](https://docs.vagrantup.com/v2/networking/private_network.html).
 
 ## Updating your php7dev image
 
