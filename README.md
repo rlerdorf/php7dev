@@ -29,19 +29,16 @@ Add this to your hosts file:
 
 There are also various vagrant plugins that can help you update your dns. See [local-domain-resolution](https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins#local-domain-resolution).  
 
-The [landrush](https://github.com/phinze/landrush) one looks interesting since it could be used to create a local **php7dev** domain and you could then just make all your vhosts **myvhost.php7dev** and you wouldn't need to edit your */etc/hosts* file every time you added a new vhost.
-
-```
-$ vagrant reload
-```
+At this point you should be able to point your  browser at:
 
 ```
 http://php7dev/
 ```
 
-It should show the PHP7 phpinfo() page.
+and it should show the PHP7 phpinfo() page.
 
-This also means you don't need to use **vagrant ssh** anymore. You can just ssh directly into the machine like any other machine on your network at this point.
+The box will also fetch an ip via DHCP so it will be on your local network like any other machine.
+This also means you don't need to use **vagrant ssh** anymore. 
 
 ## Updating your php7dev image
 
