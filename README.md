@@ -14,6 +14,10 @@ Clone this repo and change to this new directory.
 Then from a terminal, do:
 
 ```
+$ git clone https://github.com/rlerdorf/php7dev.git
+...
+$ cd php7dev
+...
 $ vagrant up
 ...
 $ vagrant ssh
