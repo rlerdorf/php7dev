@@ -19,7 +19,7 @@ class Php7dev
       vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
       vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       vb.customize ["modifyvm", :id, "--ostype", "Debian_64"]
-      vb.customize ["modifyvm", :id, "--audio", "none", "--usb", "on", "--usbehci", "off"]
+      vb.customize ["modifyvm", :id, "--audio", "none", "--usb", "off", "--usbehci", "off"]
     end
 
     # Configure Port Forwarding To The Box
