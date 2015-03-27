@@ -40,7 +40,7 @@ else switch_php('php'.$version, $debug, $zts);
 function usage() {
     global $argv;
     $cmd = basename($argv[0]);
-    echo "Usage: $cmd 70|56|55|54|53|52|51 [debug|zts|debugzts]\n";
+    echo "Usage: $cmd 70|56|55|54|53 [debug|zts|debugzts]\n";
     echo "To switch to PHP 5.5-debug: $cmd 55 debug\n\n";
     exit;
 }
@@ -58,7 +58,7 @@ function switch_php($version, $debug=false, $zts = false) {
     }
     $real_version = trim(shell_exec("$prefix/$version/bin/php -v | head -1"))
         . (($debug && $zts) ? ' (with debug and zts)' : ($debug ? ' (with debug)' : ($zts ? ' (with zts)' : '')));
-    echo "Activating PHP $real_version and restarting php-fpm\n";
+    echo "Activating $real_version and restarting php-fpm\n";
 
     foreach($map as $link=>$target) {
         // echo "Creating $prefix/$link => $path/$target\n";
