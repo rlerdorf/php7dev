@@ -19,12 +19,19 @@ if($argc<2) usage();
 
 $debug = $zts = false;
 if($argc>2) {
-    if($argv[2] == 'debug') { $debug = true; $zts = false; }
-    else if($argv[2] == 'zts') { $debug = false; $zts = true; }
-    else if($argv[2] == 'debugzts') { $debug = true; $zts = true; }
+    for ($i = 2; $i < $argc; $i++) {
+        if ($argv[$i] == 'debug') {
+            $debug = true;
+        } else if ($argv[$i] == 'zts') {
+            $zts = true;
+        } else if ($argv[$i] == 'debugzts') {
+            $debug = true;
+            $zts = true;
+        }
+    }
 }
 
-$version = $argv[1];
+$version = preg_replace('/[\.\-]+/', '', $argv[1]);
 if($version=='7') switch_php('php70', $debug, $zts);
 else if($version=='5') switch_php('php56', $debug, $zts);
 else if(file_exists("$prefix/$version/bin/php")) switch_php($version, $debug, $zts);
@@ -33,8 +40,8 @@ else switch_php('php'.$version, $debug, $zts);
 function usage() {
     global $argv;
     $cmd = basename($argv[0]);
-    echo "Usage: $cmd 70|56|55|54|53|52|51 [debug/zts/debug-zts]\n";
-    echo "To switch to PHP 5.5-debug: tryphp 55 debug\n\n";
+    echo "Usage: $cmd 70|56|55|54|53|52|51 [debug|zts|debugzts]\n";
+    echo "To switch to PHP 5.5-debug: $cmd 55 debug\n\n";
     exit;
 }
 
@@ -45,10 +52,12 @@ function switch_php($version, $debug=false, $zts = false) {
     if($debug) $path .= '-debug';
     if($zts) $path .= '-zts';
     if(!is_file("$path/bin/php")) {
-        echo "$prefix/$version/bin/php doesn't exist\n";
+        echo "$prefix/$version/bin/php doesn't exist\n\n";
+        usage();
         return false;
     }
-    $real_version = trim(shell_exec("$prefix/$version/bin/php -v | head -1"));
+    $real_version = trim(shell_exec("$prefix/$version/bin/php -v | head -1"))
+        . (($debug && $zts) ? ' (with debug and zts)' : ($debug ? ' (with debug)' : ($zts ? ' (with zts)' : '')));
     echo "Activating PHP $real_version and restarting php-fpm\n";
 
     foreach($map as $link=>$target) {
