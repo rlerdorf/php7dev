@@ -116,10 +116,10 @@ $ ./buildconf -f
 $ ./cn
 $ make
 $ sudo make install
-$ sudo service php-fpm restart
+$ sudo newphp 7 debug
 ```
 
-It should be quite fast because ccache is installed and the cache should be relatively recent. Note the **./cn** script. The **--prefix** setting specified where to install to. Make sure the path matches your debug/zts setting.
+It should be quite fast because ccache is installed and the cache should be relatively recent. Note the **./cn** script. The **--prefix** setting specified where to install to. Make sure the path matches your debug/zts setting. You can change that script to build the non-debug version by chanding **--enable-debug** to **--disable-debug** and removing **-debug** from the *--prefix**. In that case you would just do: **sudo newphp 7**
 
 ## Installing phpBB
 
