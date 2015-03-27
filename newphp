@@ -12,7 +12,8 @@ $map = [
  'include/php'=>'include/php',
  'lib/php/build'=>'lib/php/build',
  'php'=>'php',
- 'sbin/php-fpm'=>'sbin/php-fpm'
+ 'sbin/php-fpm'=>'sbin/php-fpm',
+ 'bin/phpdbg'=>'bin/phpdbg'
 ];
 
 if($argc<2) usage();
@@ -55,7 +56,7 @@ function switch_php($version, $debug=false, $zts = false) {
         usage();
         return false;
     }
-    $real_version = trim(shell_exec("$prefix/$version/bin/php -v | head -1"))
+    $real_version = trim(shell_exec("$path/bin/php -v | head -1"))
         . (($debug && $zts) ? ' (with debug and zts)' : ($debug ? ' (with debug)' : ($zts ? ' (with zts)' : '')));
     echo "Activating $real_version and restarting php-fpm\n";
 
