@@ -38,8 +38,7 @@ else if(file_exists("$prefix/$version/bin/php")) switch_php($version, $debug, $z
 else switch_php('php'.$version, $debug, $zts);
 
 function usage() {
-    global $argv;
-    $cmd = basename($argv[0]);
+    $cmd = basename(__FILE__);
     echo "Usage: $cmd 70|56|55|54|53 [debug|zts|debugzts]\n";
     echo "To switch to PHP 5.5-debug: $cmd 55 debug\n\n";
     exit;
