@@ -230,6 +230,25 @@ $ service php-fpm stop
 $ service php56-fpm start
 ```
 
+## Updating to the latest PHP 7
+
+To update php7 to the latest, do this:
+
+```bash
+$ cd php-src
+$ git pull -r
+$ make distclean
+$ ./buildconf -f
+$ ./cn
+$ make
+$ sudo make install
+$ sudo service php-fpm restart
+```
+
+It should be quite fast because ccache is installed and the cache should be relatively recent. Note the **./cn** script. The **--prefix** setting specified where to install to. Make sure the path matches your debug/zts setting.
+
+You will also find a .gdbinit symlink in *~vagrant* which provides a number of useful gdb macros. The symlink into php-src should ensure you have the right set for the current checked out version of the code.
+
 ## Debugging Tools
 
 For debugging, you have many options. Valgrind is installed and the suppressions file is up to date. I have included a helper script I use called *memcheck*. Try it:
@@ -272,22 +291,6 @@ The debug build will report memory leaks and you can of course run it
 under gdb or valgrind as well. See the */usr/local/bin/memcheck* script
 for how to run Valgrind.
 
-To update php7 to the latest, do this:
-
-```bash
-$ cd php-src
-$ git pull -r
-$ make distclean
-$ ./buildconf -f
-$ ./cn
-$ make
-$ sudo make install
-$ sudo service php-fpm restart
-```
-
-It should be quite fast because ccache is installed and the cache should be relatively recent. Note the **./cn** script. The **--prefix** setting specified where to install to. Make sure the path matches your debug/zts setting.
-
-You will also find a .gdbinit symlink in *~vagrant* which provides a number of useful gdb macros. The symlink into php-src should ensure you have the right set for the current checked out version of the code.
 
 ## APT
 
