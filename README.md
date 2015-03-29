@@ -1,6 +1,9 @@
 ## Summary
 php7dev is a Debian 7.8 [Vagrant image](https://atlas.hashicorp.com/rasmus/boxes/php7dev) which is preconfigured for testing PHP apps and developing extensions across many versions of PHP.
 
+## Changes in 0.0.7
+- Try to fix vagrant ssh issue by adding new insecure vagrant key
+
 ## Changes in 0.0.6
 - Default PHP version is 7 again
 - Use -j2 in makephp since the vm is configured for 2 CPUs
@@ -76,7 +79,7 @@ $ vagrant ssh
 If you have vagrant version < 1.5, you may run into "command was not invoked properly" error with `vagrant box add rasmus/php7dev`, then you can run it with the following explicit url:
 
 ```
-$ vagrant box add "rasmus/php7dev" https://vagrantcloud.com/rasmus/boxes/php7dev/versions/0.0.6/providers/virtualbox.box
+$ vagrant box add "rasmus/php7dev" https://vagrantcloud.com/rasmus/boxes/php7dev/versions/0.0.7/providers/virtualbox.box
 ```
 
 For DHCP add:
