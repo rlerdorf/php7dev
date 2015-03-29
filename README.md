@@ -1,6 +1,9 @@
 ## Summary
 php7dev is a Debian 7.8 [Vagrant image](https://atlas.hashicorp.com/rasmus/boxes/php7dev) which is preconfigured for testing PHP apps and developing extensions across many versions of PHP.
 
+## Changes in 0.0.8
+- Fix double-entry in /etc/network/interfaces
+
 ## Changes in 0.0.7
 - Try to fix vagrant ssh issue by adding new insecure vagrant key
 
