@@ -126,7 +126,7 @@ $ vagrant up
 ...
 ```
 
-## Updating to the latest PHP7 build
+## Compiling the latest PHP 7
 
 There is a script called *makephp* which does unattended builds.
 To build and install the latest PHP 7.0 and PHP 7.0-debug just do:
