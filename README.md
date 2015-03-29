@@ -3,8 +3,9 @@ php7dev is a Debian 7.8 [Vagrant image](https://atlas.hashicorp.com/rasmus/boxes
 
 ## Oops!
 In version *0.0.5* I accidentally left PHP 5.6-debug as the active version
-I don't feel like rolling a whole new image just to fix that. It is trivial
-to switch active versions. Just type:
+I don't feel like rolling a whole new image just to fix that. I will fix it
+in the next build. It is trivial to switch active versions and it is something
+you should get familiar with quickly anyway. Just type:
 ```
 newphp 7
 ```
