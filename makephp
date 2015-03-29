@@ -246,7 +246,7 @@ function build_it($branch, $conf_flags) {
         "=configuring...",
         "./configure $conf_flags 2>&1 1>> /tmp/build.log",
         "=\ncompiling...",
-        "make 2>&1 1>> /tmp/build.log",
+        "make -j2 2>&1 1>> /tmp/build.log",
         "=\ninstalling...",
         "sudo make install 2>&1 1>> /tmp/build.log",
         "=\ndone\n"

@@ -1,15 +1,11 @@
 ## Summary
 php7dev is a Debian 7.8 [Vagrant image](https://atlas.hashicorp.com/rasmus/boxes/php7dev) which is preconfigured for testing PHP apps and developing extensions across many versions of PHP.
 
-## Oops!
-In version *0.0.5* I accidentally left PHP 5.6-debug as the active version
-I don't feel like rolling a whole new image just to fix that. I will fix it
-in the next build. It is trivial to switch active versions and it is something
-you should get familiar with quickly anyway. Just type:
-```
-newphp 7
-```
-At your shell prompt after ssh'ing into the image.
+## Changes in 0.0.6
+- Default PHP version is 7 again
+- Use -j2 in makephp since the vm is configured for 2 CPUs
+- Updated composer
+- Put image version in /etc/motd
 
 ## Changes in 0.0.5
 - dist-upgraded all Debian packages
@@ -20,7 +16,7 @@ At your shell prompt after ssh'ing into the image.
 - Added phpdbg to PHP 7.0 builds
 - Updated Valgrind .suppressions file
 - Re-installed headers as per https://github.com/rlerdorf/php7dev/issues/4
-
+- Installed strace
 
 ## Installation
 
@@ -135,9 +131,6 @@ To build and install the latest PHP 7.0 and PHP 7.0-debug just do:
 ```
 $ makephp 7
 ```
-
-Note that on a decently fast machine it takes about 4 minutes per build. 
-So *makephp 7* which builds php7 and php7-debug will take 8 minutes.
 
 Or you can build it manually like this:
 
