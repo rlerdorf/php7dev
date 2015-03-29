@@ -1,6 +1,17 @@
 ## Summary
 php7dev is a Debian 7.8 [Vagrant image](https://atlas.hashicorp.com/rasmus/boxes/php7dev) which is preconfigured for testing PHP apps and developing extensions across many versions of PHP.
 
+## Changes in 0.0.5
+- dist-upgraded all Debian packages
+- Updated newphp script - no longer need to sudo
+- Added makephp script
+- Added src/mysql checkout from pecl
+- Rebuilt all PHP versions
+- Added phpdbg to PHP 7.0 builds
+- Updated Valgrind .suppressions file
+- Re-installed headers as per https://github.com/rlerdorf/php7dev/issues/4
+
+
 ## Installation
 
 Download and install [Virtualbox](https://www.virtualbox.org/wiki/Downloads)
@@ -108,6 +119,18 @@ $ vagrant up
 
 ## Updating to the latest PHP7 build
 
+There is a script called *makephp* which does unattended builds.
+To build and install the latest PHP 7.0 and PHP 7.0-debug just do:
+
+```
+$ makephp 7
+```
+
+Note that on a decently fast machine it takes about 4 minutes per build. 
+So *makephp 7* which builds php7 and php7-debug will take 8 minutes.
+
+Or you can build it manually like this:
+
 ```bash
 $ cd php-src
 $ git pull -r
@@ -116,10 +139,10 @@ $ ./buildconf -f
 $ ./cn
 $ make
 $ sudo make install
-$ sudo newphp 7 debug
+$ newphp 7 debug
 ```
 
-It should be quite fast because ccache is installed and the cache should be relatively recent. Note the **./cn** script. The **--prefix** setting specified where to install to. Make sure the path matches your debug/zts setting. You can change that script to build the non-debug version by chanding **--enable-debug** to **--disable-debug** and removing **-debug** from the *--prefix**. In that case you would just do: **sudo newphp 7**
+Note the **./cn** script. The **--prefix** setting specified where to install to. Make sure the path matches your debug/zts setting. You can change that script to build the non-debug version by chanding **--enable-debug** to **--disable-debug** and removing **-debug** from the *--prefix**. In that case you would just do: **newphp 7**
 
 ## Installing phpBB
 
@@ -233,7 +256,7 @@ Usually does the trick. You will also find [composer](https://getcomposer.org/) 
 New in version 0.0.3 of the image is the ability to switch the entire PHP environment quickly. Every version of PHP since 5.3 is precompiled and installed in /usr/local/php*. There are actually 4 builds for each version. debug, zts, debug-zts and the standard non-debug, non-zts. To switch versions do:
 
 ```
-$ sudo newphp 55 debug zts
+$ newphp 55 debug zts
 Activating PHP 5.5.22-dev and restarting php-fpm
 ```
 If you reload **http://php7dev/** you will see the PHP 5.5 info page, but much more importanly, if you run **phpize** in an extension directory it will now build the extension for PHP 5.5-debug-zts and install it in the correct place. You can quickly switch between versions like this and build your extension for 20 different combinations of PHP versions (this was requested by @auroraeosrose so if it is useful to you, she is partly to blame - if it isn't, blame me).

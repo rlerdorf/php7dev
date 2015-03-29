@@ -1,0 +1,230 @@
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:gaih_inet
+   fun:getaddrinfo
+   fun:ip_nametoaddr
+   fun:tcp_canonical
+   fun:mylocalhost
+   fun:auth_gssapi_valid
+   fun:auth_link
+   fun:zm_startup_imap
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:fs_get
+   fun:cpystr
+   fun:mylocalhost
+   fun:auth_gssapi_valid
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:CRYPTO_malloc
+   obj:/usr/lib/x86_64-linux-gnu/libssl.so.1.0.0
+   fun:SSL_COMP_get_compression_methods
+   fun:SSL_library_init
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:calloc
+   fun:_dlerror_run
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:CRYPTO_malloc
+   fun:sk_new
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:fs_get
+   fun:ip_nametoaddr
+   fun:tcp_canonical
+   fun:mylocalhost
+   fun:auth_gssapi_valid
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_dl_map_object_deps
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:local_strdup
+   fun:_dl_map_object
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_dl_new_object
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:gaih_inet
+   fun:getaddrinfo
+   fun:ip_nametoaddr
+   fun:tcp_canonical
+   fun:mylocalhost
+   fun:auth_gssapi_valid
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:calloc
+   fun:_dl_check_map_versions
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:alloc_globals_ctor
+   fun:start_memory_manager
+   fun:zend_startup
+   fun:php_module_startup
+   fun:php_cli_startup
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:add_to_global
+   fun:dl_open_worker
+   fun:_dl_catch_error
+   fun:_dl_open
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:calloc
+   fun:_dl_new_object
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:realloc
+   fun:__zend_realloc
+   fun:zend_new_interned_string_int
+   fun:do_register_internal_class
+   fun:zend_register_internal_class
+   fun:curlfile_register_class
+   fun:zm_startup_curl
+   fun:zend_startup_module_ex
+   fun:zend_startup_module_zval
+   fun:zend_hash_apply
+   fun:zend_startup_modules
+   fun:php_module_startup
+   fun:php_cli_startup
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_dl_map_object_deps
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:xmlStrndup
+   fun:xmlNewCharEncodingHandler
+   fun:xmlInitParser
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:xmlStrndup
+   fun:xmlNewCharEncodingHandler
+   fun:xmlInitCharEncodingHandlers
+   fun:xmlInitParser
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:xmlNewMutex
+   fun:xmlInitGlobals
+   fun:xmlInitParser
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:xmlNewMutex
+   fun:xmlInitMemory
+   fun:xmlInitParser
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:xmlNewCharEncodingHandler
+   fun:xmlInitCharEncodingHandlers
+   fun:xmlInitParser
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:xmlNewCharEncodingHandler
+   fun:xmlInitParser
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:xmlNewRMutex
+   fun:xmlInitializeDict
+   fun:xmlInitParser
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:xmlInitCharEncodingHandlers
+   fun:xmlInitParser
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:zend_register_iterator_wrapper
+   fun:zend_register_default_classes
+   fun:zm_startup_core
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:__zend_malloc
+   fun:zend_string_alloc
+   fun:zend_string_init
+   fun:zend_register_iterator_wrapper
+   fun:zend_register_default_classes
+   fun:zm_startup_core
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:memalign
+   fun:tls_get_addr_tail
+}
+
