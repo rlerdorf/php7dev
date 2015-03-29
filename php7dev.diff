@@ -1,0 +1,8 @@
+--- motd	2015-03-29 22:50:08.834849153 +0000
++++ /etc/motd	2015-03-29 18:42:03.274014273 +0000
+@@ -1,5 +1,5 @@
+ php7dev image version 0.0.8
+-  'makephp 7' - to update you PHP 7 build
++  'makephp 7' - to update your PHP 7 build
+   'newphp 56' - to switch to PHP-5.6
+   Please read the documentation at https://github.com/rlerdorf/php7dev
