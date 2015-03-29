@@ -1,6 +1,15 @@
 ## Summary
 php7dev is a Debian 7.8 [Vagrant image](https://atlas.hashicorp.com/rasmus/boxes/php7dev) which is preconfigured for testing PHP apps and developing extensions across many versions of PHP.
 
+## Oops!
+In version *0.0.5* I accidentally left PHP 5.6-debug as the active version
+I don't feel like rolling a whole new image just to fix that. It is trivial
+to switch active versions. Just type:
+```
+newphp 7
+```
+At your shell prompt after ssh'ing into the image.
+
 ## Changes in 0.0.5
 - dist-upgraded all Debian packages
 - Updated newphp script - no longer need to sudo
