@@ -3,10 +3,13 @@ ip: "192.168.7.7"
 memory: 1024
 cpus: 2
 
-authorize: ~/.ssh/id_rsa.pub
+authorize:
+    - ~/.ssh/id_rsa.pub
+    - ~/.ssh/id_dsa.pub
 
 keys:
     - ~/.ssh/id_rsa
+    - ~/.ssh/id_dsa
 
 networking:
     - public: true
