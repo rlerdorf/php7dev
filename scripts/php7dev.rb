@@ -36,10 +36,12 @@ class Php7dev
     
     if !Vagrant::Util::Platform.windows?
       # Configure The Public Key For SSH Access
-      if File.exists? File.expand_path(settings["authorize"]) then
-        config.vm.provision "shell" do |s|
-          s.inline = "echo $1 | grep -xq \"$1\" /home/vagrant/.ssh/authorized_keys || echo $1 | tee -a /home/vagrant/.ssh/authorized_keys"
-          s.args = [File.read(File.expand_path(settings["authorize"]))]
+      settings["authorize"].each do |key|
+        if File.exists? File.expand_path(key) then
+          config.vm.provision "shell" do |s|
+            s.inline = "echo $1 | grep -xq \"$1\" /home/vagrant/.ssh/authorized_keys || echo $1 | tee -a /home/vagrant/.ssh/authorized_keys"
+            s.args = [File.read(File.expand_path(key))]
+          end
         end
       end
       # Copy The SSH Private Keys To The Box
