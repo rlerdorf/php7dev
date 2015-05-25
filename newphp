@@ -64,12 +64,18 @@ function switch_php($version, $debug=false, $zts = false) {
         // echo "Creating $prefix/$link => $path/$target\n";
         symlink_it("$path/$target", "$prefix/$link");
     }
-
-    shell_exec("service php-fpm restart");
+    if(substr($version,0,4)=='php7') {
+        shell_exec("sudo a2dismod php5");
+        shell_exec("sudo a2enmod php7");
+    } else {
+        shell_exec("sudo a2dismod php7");
+        shell_exec("sudo a2enmod php5");
+    }
+    shell_exec("sudo service php-fpm restart");
 }
 
 function symlink_it($target, $link) {
     // Skip files that have been hard-linked in place
     if(file_exists($link) && !is_link($link)) return false;
-    shell_exec("ln -f -s $target $link");
+    system("sudo ln -f -s $target $link");
 }

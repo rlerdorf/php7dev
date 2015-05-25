@@ -1,5 +1,12 @@
 ## Summary
-php7dev is a Debian 7.8 [Vagrant image](https://atlas.hashicorp.com/rasmus/boxes/php7dev) which is preconfigured for testing PHP apps and developing extensions across many versions of PHP.
+php7dev is a Debian 8 [Vagrant image](https://atlas.hashicorp.com/rasmus/boxes/php7dev) which is preconfigured for testing PHP apps and developing extensions across many versions of PHP.
+
+## Changes in 0.0.9
+- Upgraded the base image OS from Debian 7.8 to 8.0 and recompiled all 20 PHP builds
+- Added PosgreSQL support to all builds
+- newphp will now switch the Apache module between PHP 5 and PHP 7 (default is still nginx)
+- Added ack
+- Updated virtualbox guest-additions
 
 ## Changes in 0.0.8
 - Fix double-entry in /etc/network/interfaces
