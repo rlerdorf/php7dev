@@ -52,7 +52,7 @@ function switch_php($version, $debug=false, $zts = false) {
     if($debug) $path .= '-debug';
     if($zts) $path .= '-zts';
     if(!is_file("$path/bin/php")) {
-        echo "$prefix/$version/bin/php doesn't exist\n\n";
+        echo "$path/bin/php doesn't exist\n\n";
         usage();
         return false;
     }
