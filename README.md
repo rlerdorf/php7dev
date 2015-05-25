@@ -158,7 +158,7 @@ $ sudo make install
 $ newphp 7 debug
 ```
 
-Note the **./cn** script. The **--prefix** setting specifies where to install to. Make sure the path matches your debug/zts setting. You can change that script to build the non-debug version by chanding **--enable-debug** to **--disable-debug** and removing **-debug** from the *--prefix**. In that case you would just do: **newphp 7**
+Note the **./cn** script. The **--prefix** setting specifies where to install to. Make sure the path matches your debug/zts setting. You can change that script to build the non-debug version by changing **--enable-debug** to **--disable-debug** and removing **-debug** from the *--prefix**. In that case you would just do: **newphp 7**
 
 ## Installing phpBB
 
