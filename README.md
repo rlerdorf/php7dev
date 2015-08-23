@@ -135,6 +135,12 @@ $ vagrant destroy
 $ vagrant up
 ...
 ```
+If virtualbox complains about an unsupported provider, make sure to have a working virtualbox and prefix the command with ``VAGRANT_DEFAULT_PROVIDER=virtualbox``:
+
+```
+$ VAGRANT_DEFAULT_PROVIDER=virtualbox vagrant up
+...
+```
 
 ## Compiling the latest PHP 7
 
