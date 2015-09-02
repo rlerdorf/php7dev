@@ -64,11 +64,13 @@ class Php7dev
     end
 
     # Configure All Of The Configured Databases
-    settings["databases"].each do |db|
-        config.vm.provision "shell" do |s|
-            s.path = "./scripts/create-mysql.sh"
-            s.args = [db]
-        end
+    if settings['databases'].kind_of?(Array)
+      settings["databases"].each do |db|
+          config.vm.provision "shell" do |s|
+              s.path = "./scripts/create-mysql.sh"
+              s.args = [db]
+          end
+      end
     end
 
     # Update Composer On Every Provision
