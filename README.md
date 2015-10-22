@@ -1,6 +1,19 @@
 ## Summary
 php7dev is a Debian 8 [Vagrant image](https://atlas.hashicorp.com/rasmus/boxes/php7dev) which is preconfigured for testing PHP apps and developing extensions across many versions of PHP.
 
+## Changes in 0.1.0
+- Updated all PHP builds to the latest
+- Updated all Debian packages
+- Added PHP 7.1 builds bringing the total builds included to 24
+- Added php-fpm systemd support
+- Included pear and pecl tools
+- Enabled the PHP 7 file-based opcache cache
+- Fully supported Apache in newphp version switching
+- Added AST extension to PHP 7 builds
+- Added phan static analyzer
+- Added memcached extension to all versions
+- Added raphf, propro and http extensions to all versions
+
 ## Changes in 0.0.9
 - Upgraded the base image OS from Debian 7.8 to 8.0 and recompiled all 20 PHP builds
 - Added PosgreSQL support to all builds
@@ -166,6 +179,17 @@ $ newphp 7 debug
 
 Note the **./cn** script. The **--prefix** setting specifies where to install to. Make sure the path matches your debug/zts setting. You can change that script to build the non-debug version by changing **--enable-debug** to **--disable-debug** and removing **-debug** from the *--prefix**. In that case you would just do: **newphp 7**
 
+## Web Server
+
+The default web server is nginx. Switching to Apache is as simple as:
+
+```
+$ sudo service nginx stop
+$ sudo apachectl start
+```
+
+Running **newphp** will correctly enable the specified PHP version and restart Apache for you.
+
 ## Installing phpBB
 
 Now you can install something. The sites live in */var/www*.
@@ -281,7 +305,7 @@ New in version 0.0.3 of the image is the ability to switch the entire PHP enviro
 $ newphp 55 debug zts
 Activating PHP 5.5.22-dev and restarting php-fpm
 ```
-If you reload **http://php7dev/** you will see the PHP 5.5 info page, but much more importanly, if you run **phpize** in an extension directory it will now build the extension for PHP 5.5-debug-zts and install it in the correct place. You can quickly switch between versions like this and build your extension for 20 different combinations of PHP versions (this was requested by @auroraeosrose so if it is useful to you, she is partly to blame - if it isn't, blame me).
+If you reload **http://php7dev/** you will see the PHP 5.5 info page, but much more importanly, if you run **phpize** in an extension directory it will now build the extension for PHP 5.5-debug-zts and install it in the correct place. You can quickly switch between versions like this and build your extension for 24 different combinations of PHP versions (this was requested by @auroraeosrose so if it is useful to you, she is partly to blame - if it isn't, blame me).
 
 For quick testing there are symlinks in */usr/local/bin* to the various versions, so you can quickly check **php56 -a** without activating it. Similarly, you can do:
 

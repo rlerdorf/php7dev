@@ -13,7 +13,9 @@ $map = [
  'lib/php/build'=>'lib/php/build',
  'php'=>'php',
  'sbin/php-fpm'=>'sbin/php-fpm',
- 'bin/phpdbg'=>'bin/phpdbg'
+ 'bin/phpdbg'=>'bin/phpdbg',
+ 'bin/pear'=>'bin/pear',
+ 'bin/pecl'=>'bin/pecl'
 ];
 
 if($argc<2) usage();
@@ -40,7 +42,7 @@ else switch_php('php'.$version, $debug, $zts);
 
 function usage() {
     $cmd = basename(__FILE__);
-    echo "Usage: $cmd 70|56|55|54|53 [debug|zts|debugzts]\n";
+    echo "Usage: $cmd 71|70|56|55|54|53 [debug|zts|debugzts]\n";
     echo "To switch to PHP 5.5-debug: $cmd 55 debug\n\n";
     exit;
 }

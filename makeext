@@ -1,0 +1,71 @@
+#!/usr/local/php70/bin/php
+<?php
+if($argc<2) usage();
+
+$zts = $world = false;
+$build = [];
+$conf = [];
+
+$version = preg_replace('/[\.\-]+/', '', $argv[1]);
+
+function usage() {
+    $cmd = basename(__FILE__);
+    echo "Usage: $cmd 71|70|56|55|54|53|all|world [zts]\n";
+    echo "To rebuild ext for PHP 7.0 and 7.0-debug: $cmd 70\n";
+    echo "To rebuild ext for PHP 7.0 and 7.0-debug threadsafe: $cmd 70 zts\n";
+    echo "To rebuild ext for PHP 5.*: $cmd 5\n";
+    exit;
+}
+
+if(!empty($argv[2]) && $argv[2]=='zts') $zts = true;
+
+switch($argv[1]) {
+    case '71': $build[71]=true; break;
+    case '7':
+    case '70': $build[7]=true; break;
+    case '56': $build[56]=true; break;
+    case '55': $build[55]=true; break;
+    case '54': $build[54]=true; break;
+    case '5': $build = [56=>true,55=>true,54=>true]; break;
+    case 'all': $build = [7=>true, 56=>true,55=>true,54=>true]; break;
+    case 'world': $build = [71=>true, 7=>true, 56=>true,55=>true,54=>true]; $world=true; break;
+}
+
+function build_it() {
+    $cmds = [
+        "=configuring...",
+        "sudo make distclean 2>&1 1>> /dev/null",
+	"phpize",
+        "./configure 2>&1 1>> /tmp/build.log",
+        "=\ncompiling...",
+        "make -j2 2>&1 1>> /tmp/build.log",
+        "=\ninstalling...",
+        "sudo make install 2>&1 1>> /tmp/build.log",
+        "=\ndone\n"
+    ];
+    foreach($cmds as $cmd) {
+        if($cmd[0]=='=') echo substr($cmd,1);
+        else shell_exec($cmd);
+    }
+}
+
+$dir = getcwd();
+shell_exec("truncate --size 0 /tmp/build.log");
+echo "Build log in /tmp/build.log\n";
+
+foreach($build as $v=>$b) {
+    if(!$zts || $world) {
+        echo "Building extension for PHP $v\n";
+        shell_exec("newphp $v");
+        build_it();
+        echo "Building PHP $v-debug\n";
+        shell_exec("newphp $v debug");
+        build_it();
+    }
+    if($zts || $world) {
+        echo "Building PHP $v-zts\n";
+        build_it();
+        echo "Building PHP $v-debug-zts\n";
+        build_it();
+    }
+}
