@@ -67,11 +67,11 @@ function switch_php($version, $debug=false, $zts = false) {
         symlink_it("$path/$target", "$prefix/$link");
     }
     if(substr($version,0,4)=='php7') {
-        shell_exec("sudo a2dismod php5");
-        shell_exec("sudo a2enmod php7");
+        shell_exec("sudo a2dismod php5 && sudo a2disconf php5");
+        shell_exec("sudo a2enmod php7 && sudo a2enconf php7");
     } else {
-        shell_exec("sudo a2dismod php7");
-        shell_exec("sudo a2enmod php5");
+        shell_exec("sudo a2dismod php7 && sudo a2disconf php7");
+        shell_exec("sudo a2enmod php5 && sudo a2enconf php5");
     }
     shell_exec("sudo service php-fpm restart");
 }
