@@ -33,6 +33,24 @@ class Php7dev
         config.vm.network "forwarded_port", guest: port["guest"], host: port["host"], protocol: port["protocol"] ||= "tcp"
       end
     end
+
+    # Add Configured Nginx Sites
+    config.vm.provision "shell" do |s|
+        s.path = "./scripts/clear-sites.sh"
+    end
+
+    if settings['sites'].kind_of?(Array)
+      config.vm.provision "shell" do |s|
+        s.path = "./scripts/remake-nginxconf.sh"
+      end
+
+      settings["sites"].each do |site|
+        config.vm.provision "shell" do |s|
+          s.args = [site["hostname"], site["to"]]
+          s.path = "./scripts/create-sites.sh"
+        end
+      end
+    end
     
     if !Vagrant::Util::Platform.windows?
       # Configure The Public Key For SSH Access
@@ -79,3 +97,4 @@ class Php7dev
     end
   end
 end
+

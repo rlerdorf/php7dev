@@ -18,5 +18,9 @@ folders:
 #    - map: example-folder
 #      to: /path/in/vagrant/example-folder
 
+sites:
+#    - hostname: example-site
+#      to: /home/vagrant/www/example-site
+
 databases:
     - example_database
