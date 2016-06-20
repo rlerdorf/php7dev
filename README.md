@@ -50,9 +50,11 @@ Download and install [Virtualbox](https://www.virtualbox.org/wiki/Downloads)
 
 Download and install [Vagrant](https://www.vagrantup.com/downloads.html)
 
+If you are on Windows, download and install [Git](https://git-scm.com/download/win)
+
 Make sure you are at least at Vagrant version 1.5 or the steps below may not work for you.
 
-If you are on Windows use the [Manual Install](#manual-install) instructions.
+If you are on Windows use the [Manual Install](#manual-install) instructions or use git-bash as substitute the UNIX bash.
 
 Otherwise for UNIX and UNIX-like users just clone and go. Like this: 
 
