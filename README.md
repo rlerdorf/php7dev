@@ -1,3 +1,46 @@
+## TL;DR
+
+Download and install [Virtualbox](https://www.virtualbox.org/wiki/Downloads)
+
+Download and install [Vagrant](https://www.vagrantup.com/downloads.html)
+
+```
+$ git clone https://github.com/vinniejames/php7dev.git
+...
+$ cd php7dev
+...
+$ vagrant up
+...
+$ vagrant ssh
+...
+$ sudo service nginx stop
+...
+$ sudo service apachectl start
+```
+
+
+If Vagrant complains about Guest Additions run the following commands:
+```
+$ vagrant ssh -c 'sudo ln -s /opt/VBoxGuestAdditions-4.3.10/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions'; vagrant reload
+```
+
+Add this to your hosts file:
+
+```
+192.168.7.7 php7dev
+```
+
+Clone development directory
+```
+$ git clone [your repo] www
+
+```
+
+Open site
+```
+http://php7dev
+```
+
 ## Summary
 php7dev is a Debian 8 [Vagrant image](https://atlas.hashicorp.com/rasmus/boxes/php7dev) which is preconfigured for testing PHP apps and developing extensions across many versions of PHP.
 
