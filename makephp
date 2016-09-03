@@ -27,7 +27,7 @@ switch($argv[1]) {
     case '55': $build[55]=true; break;
     case '54': $build[54]=true; break;
     case '5': $build = [56=>true,55=>true,54=>true]; break;
-    case 'all': $build = [7=>true, 56=>true,55=>true,54=>true]; break;
+    case 'all': $build = [71=>true, 7=>true, 56=>true,55=>true,54=>true]; break;
     case 'world': $build = [71=>true, 7=>true, 56=>true,55=>true,54=>true]; $world=true; break;
 }
 
@@ -309,7 +309,7 @@ function build_it($branch, $conf_flags) {
         "git reset --hard origin/$branch 2>&1 1> /dev/null",
         "git pull -r",
         "./vcsclean 2>&1 1> /dev/null",
-        "./buildconf -f",
+        "./buildconf --force",
         "=configuring...",
         "./configure $conf_flags 2>&1 1>> /tmp/build.log",
         "=\ncompiling...",
@@ -331,24 +331,44 @@ echo "Build log in /tmp/build.log\n";
 
 foreach($build as $v=>$b) {
     switch($v) {
+        case 72:
+            if(!$zts || $world) {
+                echo "Building PHP 7.2\n";
+                $conf_flags = implode(' ', $conf[$v]) . ' --disable-debug --prefix=/usr/local/php72';
+                build_it('master', $conf_flags);
+                echo "Building PHP 7.2-debug\n";
+                $conf_flags = implode(' ', $conf[$v]) . ' --enable-debug --prefix=/usr/local/php72-debug';
+                build_it('master', $conf_flags);
+            }
+            if($zts || $world) {
+                echo "Building PHP 7.2-zts\n";
+                $conf_flags = implode(' ', $conf[$v]) . ' --disable-debug --enable-maintainer-zts --prefix=/usr/local/php72-zts';
+                build_it('master', $conf_flags);
+                echo "Building PHP 7.2-debug-zts\n";
+                $conf_flags = implode(' ', $conf[$v]) . ' --enable-debug --enable-maintainer-zts --prefix=/usr/local/php72-debug-zts';
+                build_it('master', $conf_flags);
+            }
+            break;
+
         case 71:
             if(!$zts || $world) {
                 echo "Building PHP 7.1\n";
                 $conf_flags = implode(' ', $conf[$v]) . ' --disable-debug --prefix=/usr/local/php71';
-                build_it('master', $conf_flags);
+                build_it('PHP-7.1', $conf_flags);
                 echo "Building PHP 7.1-debug\n";
                 $conf_flags = implode(' ', $conf[$v]) . ' --enable-debug --prefix=/usr/local/php71-debug';
-                build_it('master', $conf_flags);
+                build_it('PHP-7.1', $conf_flags);
             }
             if($zts || $world) {
                 echo "Building PHP 7.1-zts\n";
                 $conf_flags = implode(' ', $conf[$v]) . ' --disable-debug --enable-maintainer-zts --prefix=/usr/local/php71-zts';
-                build_it('master', $conf_flags);
+                build_it('PHP-7.1', $conf_flags);
                 echo "Building PHP 7.1-debug-zts\n";
                 $conf_flags = implode(' ', $conf[$v]) . ' --enable-debug --enable-maintainer-zts --prefix=/usr/local/php71-debug-zts';
-                build_it('master', $conf_flags);
+                build_it('PHP-7.1', $conf_flags);
             }
             break;
+
         case 7:
             if(!$zts || $world) {
                 echo "Building PHP 7.0\n";
@@ -357,7 +377,7 @@ foreach($build as $v=>$b) {
                 echo "Building PHP 7.0-debug\n";
                 $conf_flags = implode(' ', $conf[$v]) . ' --enable-debug --prefix=/usr/local/php70-debug';
                 build_it('PHP-7.0', $conf_flags);
-            } 
+            }
             if($zts || $world) {
                 echo "Building PHP 7.0-zts\n";
                 $conf_flags = implode(' ', $conf[$v]) . ' --disable-debug --enable-maintainer-zts --prefix=/usr/local/php70-zts';
@@ -376,7 +396,7 @@ foreach($build as $v=>$b) {
                 echo "Building PHP 5.6-debug\n";
                 $conf_flags = implode(' ', $conf[$v]) . ' --enable-debug --prefix=/usr/local/php56-debug';
                 build_it('PHP-5.6', $conf_flags);
-            } 
+            }
             if($zts || $world) {
                 echo "Building PHP 5.6-zts\n";
                 $conf_flags = implode(' ', $conf[$v]) . ' --disable-debug --enable-maintainer-zts --prefix=/usr/local/php56-zts';
@@ -395,7 +415,7 @@ foreach($build as $v=>$b) {
                 echo "Building PHP 5.5-debug\n";
                 $conf_flags = implode(' ', $conf[$v]) . ' --enable-debug --prefix=/usr/local/php55-debug';
                 build_it('PHP-5.5', $conf_flags);
-            } 
+            }
             if($zts || $world) {
                 echo "Building PHP 5.5-zts\n";
                 $conf_flags = implode(' ', $conf[$v]) . ' --disable-debug --enable-maintainer-zts --prefix=/usr/local/php55-zts';
@@ -414,7 +434,7 @@ foreach($build as $v=>$b) {
                 echo "Building PHP 5.4-debug\n";
                 $conf_flags = implode(' ', $conf[$v]) . ' --enable-debug --prefix=/usr/local/php54-debug --with-config-file-path=/etc/php54-debug --with-config-file-scan-dir=/etc/php54-debug/conf.d';
                 build_it('PHP-5.4', $conf_flags);
-            } 
+            }
             if($zts || $world) {
                 echo "Building PHP 5.4-zts\n";
                 $conf_flags = implode(' ', $conf[$v]) . ' --disable-debug --enable-maintainer-zts --prefix=/usr/local/php54-zts --with-config-file-path=/etc/php54-zts --with-config-file-scan-dir=/etc/php54-zts/conf.d';

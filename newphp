@@ -15,6 +15,7 @@ $map = [
  'sbin/php-fpm'=>'sbin/php-fpm',
  'bin/phpdbg'=>'bin/phpdbg',
  'bin/pear'=>'bin/pear',
+ 'bin/peardev'=>'bin/peardev',
  'bin/pecl'=>'bin/pecl'
 ];
 
