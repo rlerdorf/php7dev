@@ -12,9 +12,9 @@ If you are on Windows, download and install [Git](https://git-scm.com/download/w
 
 Make sure you are at least at Vagrant version 1.5 or the steps below may not work for you.
 
-If you are on Windows use the [Manual Install](#manual-install) instructions or use git-bash as substitute the UNIX bash.
+If you are on Windows use the [Manual Install](#manual-install) instructions or use git-bash.
 
-Otherwise for UNIX and UNIX-like users just clone and go. Like this: 
+Otherwise for UNIX and UNIX-like users just clone and go. Like this:
 
 ```
 $ git clone https://github.com/rlerdorf/php7dev.git
@@ -32,7 +32,7 @@ Add this to your hosts file:
 192.168.7.7 php7dev
 ```
 
-There are also various vagrant plugins that can help you update your dns. See [local-domain-resolution](https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins#local-domain-resolution).  
+There are also various vagrant plugins that can help you update your dns. See [local-domain-resolution](https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins#local-domain-resolution).
 
 At this point you should be able to point your  browser at:
 
@@ -43,7 +43,7 @@ http://php7dev/
 and it should show the PHP7 phpinfo() page.
 
 The box will also fetch an ip via DHCP so it will be on your local network like any other machine.
-This also means you don't need to use **vagrant ssh** anymore. 
+This also means you don't need to use **vagrant ssh** anymore.
 
 ## Manual Install
 
@@ -185,10 +185,6 @@ configuring...
 compiling...
 installing...
 done
-vagrant@php7dev:~/src/phpredis$ phpext enable redis
-Restarting php-fpm...
-vagrant@php7dev:~/src/phpredis$ php -m | grep redis
-redis
 ```
 
 And a second helper script, **phpext** enables or disables an extension for the current version of PHP.
@@ -297,7 +293,7 @@ Add shared folders by adding them to the folders section in the php7dev.yaml con
 
 ## Toggle Public Network
 
-By default the vagrant machine will use DHCP to be accessible over the local network. This can be disabled in the php7dev.yaml configuration file. 
+By default the vagrant machine will use DHCP to be accessible over the local network. This can be disabled in the php7dev.yaml configuration file.
 
 ## Add MySQL databases
 
