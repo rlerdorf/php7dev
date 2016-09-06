@@ -1,6 +1,14 @@
 ## Summary
 php7dev is a Debian 8 [Vagrant image](https://atlas.hashicorp.com/rasmus/boxes/php7dev) which is preconfigured for testing PHP apps and developing extensions across many versions of PHP.
 
+## Changes in 1.0.0
+- Upgrade to Vagrant 1.8.5
+- Updated all PHP builds to the latest
+- Updated all Debian packages
+- Added phpext script to enable/disable extensions
+- Added xdebug, yaml, stats and redis extensions
+- Big Phan update
+
 ## Changes in 0.1.0
 - Updated all PHP builds to the latest
 - Updated all Debian packages
@@ -10,7 +18,7 @@ php7dev is a Debian 8 [Vagrant image](https://atlas.hashicorp.com/rasmus/boxes/p
 - Enabled the PHP 7 file-based opcache cache
 - Fully supported Apache in newphp version switching
 - Added AST extension to PHP 7 builds
-- Added phan static analyzer
+- Added Phan static analyzer
 - Added memcached extension to all versions
 - Added raphf, propro and http extensions to all versions
 
@@ -191,6 +199,79 @@ $ sudo apachectl start
 ```
 
 Running **newphp** will correctly enable the specified PHP version and restart Apache for you.
+
+There are a couple of other convenience scripts. **makeext** in an extension's directory will
+build and install that extension for the specified version of PHP. For example:
+
+```
+vagrant@php7dev:~$ cd src
+vagrant@php7dev:~/src$ git clone https://github.com/phpredis/phpredis.git
+Cloning into 'phpredis'...
+vagrant@php7dev:~/src$ cd phpredis/
+vagrant@php7dev:~/src/phpredis$ git checkout php7
+Branch php7 set up to track remote branch php7 from origin.
+Switched to a new branch 'php7'
+vagrant@php7dev:~/src/phpredis$ makeext 7
+Build log in /tmp/build.log
+Building extension for PHP 7
+configuring...
+compiling...
+installing...
+done
+Building PHP 7-debug
+configuring...
+compiling...
+installing...
+done
+vagrant@php7dev:~/src/phpredis$ makeext 71
+Build log in /tmp/build.log
+Building extension for PHP 71
+configuring...
+compiling...
+installing...
+done
+Building PHP 71-debug
+configuring...
+compiling...
+installing...
+done
+vagrant@php7dev:~/src/phpredis$ phpext enable redis
+Restarting php-fpm...
+vagrant@php7dev:~/src/phpredis$ php -m | grep redis
+redis
+```
+
+And a second helper script, **phpext** enables or disables an extension for the current version of PHP.
+eg.
+
+```
+vagrant@php7dev:~/src/phpredis$ newphp 70
+Activating PHP 7.0.12-dev (cli) (built: Sep  6 2016 04:47:05) ( NTS ) and restarting php-fpm
+vagrant@php7dev:~/src/phpredis$ phpext enable redis
+Restarting php-fpm...
+vagrant@php7dev:~/src/phpredis$ php -m | grep redis
+redis
+```
+
+or
+
+```
+vagrant@php7dev:~$ newphp 71
+Activating PHP 7.1.0-dev (cli) (built: Sep  6 2016 04:38:13) ( NTS ) and restarting php-fpm
+vagrant@php7dev:~$ phpext list
+Available extensions for PHP 7.1.0-dev:
+ast (enabled)
+http (enabled)
+mailparse
+memcached (enabled)
+mysql (enabled)
+redis (enabled)
+ssh2
+xdebug (enabled)
+vagrant@php7dev:~$ phpext disable xdebug
+Restarting php-fpm...
+xdebug disabled
+```
 
 ## Installing phpBB
 
