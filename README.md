@@ -1,56 +1,6 @@
 ## Summary
-php7dev is a Debian 8 [Vagrant image](https://atlas.hashicorp.com/rasmus/boxes/php7dev) which is preconfigured for testing PHP apps and developing extensions across many versions of PHP.
+php7dev is a Debian 8 [Vagrant image](https://atlas.hashicorp.com/rasmus/boxes/php7dev) which is preconfigured for testing PHP apps and developing extensions across many versions of PHP. See the [Changelog](#Changelog).
 
-## Changes in 1.0.0
-- Upgrade to Vagrant 1.8.5
-- Updated all PHP builds to the latest
-- Updated all Debian packages
-- Added phpext script to enable/disable extensions
-- Added xdebug, yaml, stats and redis extensions
-- Big Phan update
-
-## Changes in 0.1.0
-- Updated all PHP builds to the latest
-- Updated all Debian packages
-- Added PHP 7.1 builds bringing the total builds included to 24
-- Added php-fpm systemd support
-- Included pear and pecl tools
-- Enabled the PHP 7 file-based opcache cache
-- Fully supported Apache in newphp version switching
-- Added AST extension to PHP 7 builds
-- Added Phan static analyzer
-- Added memcached extension to all versions
-- Added raphf, propro and http extensions to all versions
-
-## Changes in 0.0.9
-- Upgraded the base image OS from Debian 7.8 to 8.0 and recompiled all 20 PHP builds
-- Added PosgreSQL support to all builds
-- newphp will now switch the Apache module between PHP 5 and PHP 7 (default is still nginx)
-- Added ack
-- Updated virtualbox guest-additions
-
-## Changes in 0.0.8
-- Fix double-entry in /etc/network/interfaces
-
-## Changes in 0.0.7
-- Try to fix vagrant ssh issue by adding new insecure vagrant key
-
-## Changes in 0.0.6
-- Default PHP version is 7 again
-- Use -j2 in makephp since the vm is configured for 2 CPUs
-- Updated composer
-- Put image version in /etc/motd
-
-## Changes in 0.0.5
-- dist-upgraded all Debian packages
-- Updated newphp script - no longer need to sudo
-- Added makephp script
-- Added src/mysql checkout from pecl
-- Rebuilt all PHP versions
-- Added phpdbg to PHP 7.0 builds
-- Updated Valgrind .suppressions file
-- Re-installed headers as per https://github.com/rlerdorf/php7dev/issues/4
-- Installed strace
 
 ## Installation
 
@@ -451,3 +401,56 @@ And a tiny apt primer:
 * upgrade installed: **apt-get upgrade**
 
 If something isn't working or you have suggestions, please let me know here.
+
+# Changelog
+
+## Changes in 1.0.0
+- Upgrade to Vagrant 1.8.5
+- Updated all PHP builds to the latest
+- Updated all Debian packages
+- Added phpext script to enable/disable extensions
+- Added xdebug, yaml, stats and redis extensions
+- Big Phan update
+
+## Changes in 0.1.0
+- Updated all PHP builds to the latest
+- Updated all Debian packages
+- Added PHP 7.1 builds bringing the total builds included to 24
+- Added php-fpm systemd support
+- Included pear and pecl tools
+- Enabled the PHP 7 file-based opcache cache
+- Fully supported Apache in newphp version switching
+- Added AST extension to PHP 7 builds
+- Added Phan static analyzer
+- Added memcached extension to all versions
+- Added raphf, propro and http extensions to all versions
+
+## Changes in 0.0.9
+- Upgraded the base image OS from Debian 7.8 to 8.0 and recompiled all 20 PHP builds
+- Added PosgreSQL support to all builds
+- newphp will now switch the Apache module between PHP 5 and PHP 7 (default is still nginx)
+- Added ack
+- Updated virtualbox guest-additions
+
+## Changes in 0.0.8
+- Fix double-entry in /etc/network/interfaces
+
+## Changes in 0.0.7
+- Try to fix vagrant ssh issue by adding new insecure vagrant key
+
+## Changes in 0.0.6
+- Default PHP version is 7 again
+- Use -j2 in makephp since the vm is configured for 2 CPUs
+- Updated composer
+- Put image version in /etc/motd
+
+## Changes in 0.0.5
+- dist-upgraded all Debian packages
+- Updated newphp script - no longer need to sudo
+- Added makephp script
+- Added src/mysql checkout from pecl
+- Rebuilt all PHP versions
+- Added phpdbg to PHP 7.0 builds
+- Updated Valgrind .suppressions file
+- Re-installed headers as per https://github.com/rlerdorf/php7dev/issues/4
+- Installed strace
