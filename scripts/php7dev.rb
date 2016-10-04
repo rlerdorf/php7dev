@@ -77,7 +77,7 @@ class Php7dev
     # Register All Of The Configured Shared Folders
     if settings['folders'].kind_of?(Array)
       settings["folders"].each do |folder|
-        config.vm.synced_folder folder["map"], folder["to"], type: folder["type"] ||= nil
+        config.vm.synced_folder folder["map"], folder["to"], type: folder["type"], owner: folder["owner"], group: folder["group"], mount_options: folder["mount_options"] ||= nil
       end
     end
 
