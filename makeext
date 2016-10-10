@@ -10,7 +10,7 @@ $version = preg_replace('/[\.\-]+/', '', $argv[1]);
 
 function usage() {
     $cmd = basename(__FILE__);
-    echo "Usage: $cmd 71|70|56|55|54|53|all|world [zts]\n";
+    echo "Usage: $cmd 72|71|70|56|55|54|53|all|world [zts]\n";
     echo "To rebuild ext for PHP 7.0 and 7.0-debug: $cmd 70\n";
     echo "To rebuild ext for PHP 7.0 and 7.0-debug threadsafe: $cmd 70 zts\n";
     echo "To rebuild ext for PHP 5.*: $cmd 5\n";
@@ -20,6 +20,7 @@ function usage() {
 if(!empty($argv[2]) && $argv[2]=='zts') $zts = true;
 
 switch($argv[1]) {
+    case '72': $build[72]=true; break;
     case '71': $build[71]=true; break;
     case '7':
     case '70': $build[7]=true; break;

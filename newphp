@@ -43,7 +43,7 @@ else switch_php('php'.$version, $debug, $zts);
 
 function usage() {
     $cmd = basename(__FILE__);
-    echo "Usage: $cmd 71|70|56|55|54|53 [debug|zts|debugzts]\n";
+    echo "Usage: $cmd 72|71|70|56|55|54|53 [debug|zts|debugzts]\n";
     echo "To switch to PHP 5.5-debug: $cmd 55 debug\n\n";
     exit;
 }

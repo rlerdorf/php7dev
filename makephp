@@ -10,7 +10,7 @@ $version = preg_replace('/[\.\-]+/', '', $argv[1]);
 
 function usage() {
     $cmd = basename(__FILE__);
-    echo "Usage: $cmd 71|70|56|55|54|53|all|world [zts]\n";
+    echo "Usage: $cmd 72|71|70|56|55|54|53|all|world [zts]\n";
     echo "To rebuild PHP 7.0 and 7.0-debug: $cmd 70\n";
     echo "To rebuild PHP 7.0 and 7.0-debug threadsafe: $cmd 70 zts\n";
     echo "To rebuild PHP 5.*: $cmd 5\n";
@@ -20,6 +20,7 @@ function usage() {
 if(!empty($argv[2]) && $argv[2]=='zts') $zts = true;
 
 switch($argv[1]) {
+    case '72': $build[72]=true; break;
     case '71': $build[71]=true; break;
     case '7':
     case '70': $build[7]=true; break;
@@ -27,9 +28,65 @@ switch($argv[1]) {
     case '55': $build[55]=true; break;
     case '54': $build[54]=true; break;
     case '5': $build = [56=>true,55=>true,54=>true]; break;
-    case 'all': $build = [71=>true, 7=>true, 56=>true,55=>true,54=>true]; break;
-    case 'world': $build = [71=>true, 7=>true, 56=>true,55=>true,54=>true]; $world=true; break;
+    case 'all': $build = [72=>true, 71=>true, 7=>true, 56=>true,55=>true,54=>true]; break;
+    case 'world': $build = [72=>true, 71=>true, 7=>true, 56=>true,55=>true,54=>true]; $world=true; break;
 }
+
+$conf[72] = [
+'--with-apxs2=/usr/bin/apxs2',
+'--enable-zend-signals',
+'--with-gd',
+'--with-jpeg-dir=/usr',
+'--with-png-dir=/usr',
+'--with-vpx-dir=/usr',
+'--with-freetype-dir=/usr',
+'--with-t1lib=/usr',
+'--enable-gd-native-ttf',
+'--enable-exif',
+'--with-config-file-path=/etc/php72',
+'--with-config-file-scan-dir=/etc/php72/conf.d',
+'--with-mysql-sock=/var/run/mysqld/mysqld.sock',
+'--with-zlib',
+'--enable-phpdbg',
+'--with-gmp',
+'--with-zlib-dir=/usr',
+'--with-gettext',
+'--with-kerberos',
+'--with-imap-ssl',
+'--with-mcrypt=/usr/local',
+'--with-iconv',
+'--enable-sockets',
+'--with-openssl',
+'--with-pspell',
+'--with-pdo-mysql=mysqlnd',
+'--with-pdo-sqlite',
+'--with-pgsql',
+'--with-pdo-pgsql',
+'--enable-soap',
+'--enable-xmlreader',
+'--enable-phar=shared',
+'--with-xsl',
+'--enable-ftp',
+'--enable-cgi',
+'--with-curl=/usr',
+'--with-tidy',
+'--with-xmlrpc',
+'--enable-mbstring',
+'--enable-sysvsem',
+'--enable-sysvshm',
+'--enable-shmop',
+'--with-readline',
+'--enable-pcntl',
+'--enable-fpm',
+'--with-fpm-systemd',
+'--enable-intl',
+'--enable-zip',
+'--with-imap',
+'--with-mysqli=mysqlnd',
+'--enable-calendar',
+'--enable-bcmath',
+'--enable-opcache-file'
+];
 
 $conf[71] = [
 '--with-apxs2=/usr/bin/apxs2',
