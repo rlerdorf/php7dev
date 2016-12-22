@@ -15,8 +15,8 @@ networking:
     - public: true
 
 folders:
-#    - map: example-folder
-#      to: /path/in/vagrant/example-folder
+    - map: www
+      to: /var/www/default
 
 sites:
 #    - hostname: example-site
